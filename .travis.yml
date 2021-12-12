@@ -1,12 +1,11 @@
-sudo: required
 language: generic 
+sudo: required
 servies:
   - docker
 before_install:
   - docker build -f Dockerfile.dev -t frontend-test .
-  - docker run -p 3000:3000  frontend-test
 script:
-  - docker run -e CI=true frontend yarn test   
+  - docker run -e CI=true frontend-test yarn test   
 deploy:
   provider: elasticbeanstalk
   region: "ap-southeast-1"
@@ -15,7 +14,5 @@ deploy:
   bucker_name: "atifact"
   on:
     branch: main
-  access_key_id: 
-    secure: $AWS_ACCESS_KEY
-  secret_access_key: 
-    secure: $AWS_SECRET_KEY
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
