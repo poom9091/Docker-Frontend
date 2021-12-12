@@ -1,0 +1,9 @@
+sudo: required
+language: generic 
+servies:
+  - docker
+before_install:
+  - docker build -f Dockerfile.dev -t frontend-test .
+  - docker run -p 3000:3000  frontend-test
+script:
+  - docker run -e CI=true frontend yarn test   
