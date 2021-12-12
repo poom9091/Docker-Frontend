@@ -5,7 +5,7 @@ servies:
 before_install:
   - docker build -f Dockerfile.dev -t frontend-test .
 script:
-  - docker run -e CI=true frontend yarn test   
+  - docker run -e CI=true frontend-test yarn test   
 deploy:
   provider: elasticbeanstalk
   region: "ap-southeast-1"
